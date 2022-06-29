@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detail annonce{% endblock %}
+
+{% block body %}
+<div class="card" style="width: 100%;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Title : {{ detail.title }}</h5>
+    <p class="card-text">Descrption : {{ detail.description }}</p>
+    <p class="card-text">Price : {{ detail.price }}</p>
+    {% if app.user %}
+    <a href="{{ path('app_update', { 'id': detail.id }) }}" class="btn btn-success">Update</a>
+    <a href="{{ path('app_delete', { 'id': detail.id }) }}" class="btn btn-danger">Delete</a>
+    {% endif %}
+  </div>
+  <div class='card-footer'>
+    <p class="card-text">{{ detail.updatedAt|date("d/m/Y \à h:i:s") }}</p>
+  </div>
+</div>
+{% endblock %}

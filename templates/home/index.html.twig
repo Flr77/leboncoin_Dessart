@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+{% for annonce in annonces %}
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Title : {{ annonce.title }}</h5>
+    <p class="card-text">Descrption : {{ annonce.description }}</p>
+    <p class="card-text">Price : {{ annonce.price }}</p>
+    <a href="{{ path('app_detail', { 'id': annonce.id }) }}" class="btn btn-primary">Go detail</a>
+    {% if app.user %}
+    <a href="{{ path('app_update', { 'id': annonce.id }) }}" class="btn btn-success">Update</a>
+    <a href="{{ path('app_delete', { 'id': annonce.id }) }}" class="btn btn-danger">Delete</a>
+    {% endif %}
+  </div>
+  <div class='card-footer'>
+    <p class="card-text">{{ annonce.updatedAt|date("d/m/Y \à h:i:s") }}</p>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
